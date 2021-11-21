@@ -1,0 +1,191 @@
+LINGUA FRANCA - An Offline Project
+In this project, you’ll use your own computer’s command line to bring the whole course together!
+
+Welcome to the cumulative project for the Learn Command Line course! It’s time to build fluency using the command line on your own computer. In this offline project, you will download a zip file containing all the relevant project contents. Follow the instructions below to get started and complete the project!
+
+Objective
+Lingua Franca, a translation service, has asked you to help them manage their file system and configure their environment.
+
+Steps:
+Download the lingua-franca-project.zip file.
+Unzip the file by double-clicking on it in your Downloads/ folder, or wherever your downloads are.
+Navigate to the newly unzipped folder, making note of its location in your computer’s file system.
+
+
+TASK GROUP 1: Navigating the File System
+The file structure for this project consists of language files ending in .txt grouped under various sub-directories taking the name of continents. There is a separate sub-directory called todo which also contains language files grouped under continent names.
+
+For example, a top-level view would give you this:
+
+africa/  asia/  europe/  northamerica/  southamerica/  spanish.txt  todo/
+A sub-directory view would give you this:
+
+./asia:
+arabic.txt  hebrew.txt  hindi.txt  japanese.txt  korean.txt  malay.txt
+The todo sub-directory view would appear like this:
+
+./todo:
+africa/  asia/  europe/
+
+Task 1
+Navigate to the lingua-franca/ project directory in your own file system.
+cd lingua-franca
+
+Task 2
+Print the working directory.
+pwd
+
+Task 3
+List the content of the current working directory.
+ls
+
+Task 4
+Make a new directory, world, in the current directory.
+mkdir world
+
+Task 5
+Create a new file, esperanto.txt in the world directory and list the content of the world directory.
+touch world/esperanto.txt
+ls world - to list the contents of the 
+
+TASK GROUP 2: Viewing and Changing the File System
+
+Task 6
+List all the contents of the current working directory based on the following constraints:
+
+content must include hidden files and directories
+ls -a
+content must appear in long format
+ls -l
+content must be sorted based on the time they were last modified.
+ls -t
+Which directory would appear first?
+ls -alt 
+since the world directory is the most recent addition, it will apear first in the listing 
+
+Task 7
+List the content of the europe directory. Notice that a file, chinese.txt doesn't belong there. Move that file to the currect directory, asia.
+ls europe 
+mv europe/chinese.txt asia
+
+Task 8
+List the current working directory. Notice that the file spanish.txt needs to be categorized somewhere. Copy it to the following directories: europe, northamerica, and southamerica. Then remove it from the current directory.
+ls
+cp spanish.txt europe
+cp spanish.txt northamerica
+cp spanish.txt southamerica
+rm spanish.txt
+
+Task 9
+A directory called todo contains subdirectories of continents with language files in them. List the contents of the directory, todo/*.
+ls todo/*
+
+Task 10
+Please copy these files to their appropriate locations under the current top-level directory.
+cp todo/africa/* africa
+cp todo/europe/* europe
+cp todo/asia/* asia
+
+Task 11
+Then remove all the files and directories of todo/ excluding the todo directory in one step.
+rm todo/*
+
+TASK GROUP 3: Redirecting Input and Output
+
+Task 12
+List all the files in the asia/ directory and save it in a file, asian_language_files.txt in the todo/ directory.
+ls asia/* > todo/asian_language_files.txt
+
+Task 13
+Instead of writing the contents of a file with a file editor, echo the following statement, Welkom by die Lingua Franca vertaaldienste. into the file afrikaans.txt in 
+the africa directory.
+echo "Welkom by die Lingua Franca vertaaldienste." > africa/afrikaans.txt
+cat africa/afrikaans.txt
+should output: Welkom by die Lingua Franca vertaaldienste.
+
+Task 14
+Some of the files in our project which end with the suffix, .txt, have no content in them. List the files, across all the continent directories, that end with .txt that 
+have no content and save the listing in a file, empty_files.txt, in the todo/ directory.
+wc -l */*.txt
+wc -l */*.txt | grep 0
+wc -l */*.txt | grep 0 > todo/empty_files.txt
+
+Task 15
+Display the content of todo/empty_files.txt to list all the empty files across all the continent directories.
+cat todo/empty_files.txt
+
+Task 16
+The name of our translation service is Lingua Franca, however some of the files mistakenly spell it as Lingua-Franca. Replace the string 'Lingua-Franca' with 'Lingua Franca' 
+in all occurrences in all the .txt files.
+sed 's/Lingua-Franca/Lingua France/g' */*.txt
+
+Check your work using this command, confirming that there are 0 occurrences of Lingua-Franca across all text files:
+
+grep -Rl 'Lingua-Franca' */*.txt | wc -l
+should output o results 
+
+TASK GROUP 4: Configuring the Environment
+
+Task 17
+Create and open the bash profile with your favorite editor.
+nano ~/.bash_profile
+
+Task 18
+In the bash profile, add a greeting of your choice. Save the bash profile, exit nano, and clear the terminal window.
+echo "Welcome, Hola, Bonjour, and Buna! Welcome to our translation services"
+CTRL + O, Enter, CTRL + X, Enter
+
+Task 19
+Source the bash profile to make the greeting available in the current session. You should see the greeting you creating in the above step.
+source ~/.bash_profile
+
+Task 20
+Open the bash profile, and create three aliases:
+
+md for the mkdir command
+d for date
+hy for history
+Save the bash profile, exit nano, and clear the terminal window.
+
+nano ~/.bash_profile
+alias = md="mkdir"
+alias d="date"
+alias hy="hystory"
+CTRL + O, Enter, CTRL + X, Enter
+clear
+
+Task 21
+Source the bash profile to make the aliases available in the current session.
+source ~/.bash_profile
+
+Task 22
+Test out the aliases you created for the mkdir, date, and history commands. (Recall that when you test out the alias for mkdir you will need to pass in a directory 
+name as an argument such as translations.) After testing out the mkdir alias, list the directory created.
+
+md translations 
+ls translations
+d to test tha alias date at the terminal 
+Sun Nov 21 16:57:35 GMTST 2021
+hy
+
+Task 23
+Open the bash profile. Create and export the PS1 environment variable, setting it equal to a prompt of your choice. Be sure to leave a space before the close of the quotations.
+nano ~/.bash_profile
+export PS1="Lingua Franca > "
+
+Save the bash profile, exit nano, and clear the terminal window.
+
+Task 24
+Source the bash profile to make the new prompt available in the current session.
+source ~/.bash_profile
+
+Task 25
+Test out the prompt by typing the names of the aliases you created. Remember to list the directory created from the mkdir alias.
+
+md script
+d
+hy
+
+Task 26
+Last, but not least, return a list of environment variables.
+env
